@@ -35,7 +35,7 @@ export default function Footer() {
         <SocialLinks align="center" />
 
         <p className="text-center text-sm text-secondary">
-          © {year} Your Name. Built with Next.js, TypeScript and Tailwind CSS.
+          © {year} rahad.
         </p>
       </div>
     </footer>

@@ -9,7 +9,7 @@ import Button from "@/components/ui/Button";
 
 const ROLES: readonly string[] = [
   "Frontend Developer",
-  // "UI/UX Designer",
+  "UI Designer",
   "Creative Coder",
 ];
 
@@ -74,15 +74,12 @@ export default function Hero() {
             Hi, I&apos;m <span className="text-neon">RAHAD</span>
             <span className="block text-secondary">
               I build
-              <span
-                aria-live="polite"
-                className="block min-h-[1.] text-white"
-              >
+              <span aria-live="polite" className="block min-h-[1.] text-white">
                 <motion.span
                   key={activeRole}
                   initial={reduceMotion ? false : { opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.9 }}
                 >
                   {activeRole}
                 </motion.span>

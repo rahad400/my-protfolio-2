@@ -26,7 +26,6 @@ export default function Hero() {
     }, 2600);
     return () => window.clearInterval(id);
   }, [reduceMotion]);
-
   const activeRole = ROLES[roleIndex] ?? ROLES[0] ?? "Frontend Developer";
 
   const fadeUp = (delay: number) => ({
