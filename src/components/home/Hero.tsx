@@ -71,7 +71,7 @@ export default function Hero() {
             id="hero-heading"
             className="mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl"
           >
-            Hi, I&apos;m <span className="text-neon">Your Name</span>
+            Hi, I&apos;m <span className="text-neon">RAHAD</span>
             <span className="block text-secondary">
               I build{" "}
               <span
