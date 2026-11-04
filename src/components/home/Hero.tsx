@@ -9,7 +9,6 @@ import SocialLinks from "@/components/shared/SocialLinks";
 
 const ROLES: readonly string[] = [
   "Frontend Developer",
-  "UI/UX Designer",
   "Creative Coder",
 ];
 

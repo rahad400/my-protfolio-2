@@ -17,7 +17,7 @@ const DEFAULT_LINKS: readonly NavLink[] = [
   { label: "About", href: "#about", id: "about" },
   { label: "Skills", href: "#skills", id: "skills" },
   { label: "Projects", href: "#projects", id: "projects" },
-  { label: "Journey", href: "#journey", id: "journey" },
+  // { label: "Journey", href: "#journey", id: "journey" },
   { label: "Contact", href: "#contact", id: "contact" },
 ];
 

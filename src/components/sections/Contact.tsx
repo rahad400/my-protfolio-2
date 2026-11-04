@@ -217,7 +217,7 @@ export default function Contact() {
               <ArrowUpRight className="ml-auto size-4 shrink-0 text-secondary" aria-hidden="true" />
             </motion.a>
 
-            <motion.p
+            {/* <motion.p
               {...reveal(0.4)}
               className="flex items-start gap-3 rounded-2xl border border-border bg-card/40 px-5 py-4 text-sm leading-relaxed text-secondary"
             >
@@ -228,7 +228,7 @@ export default function Contact() {
                 src/data/contact.ts
               </code>
               .
-            </motion.p>
+            </motion.p> */}
           </div>
 
           {/* Right — form */}
