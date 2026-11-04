@@ -9,6 +9,7 @@ import SocialLinks from "@/components/shared/SocialLinks";
 
 const ROLES: readonly string[] = [
   "Frontend Developer",
+  "UI Designer",
   "Creative Coder",
 ];
 
@@ -35,7 +36,11 @@ export default function Hero() {
   });
 
   return (
-    <section id="home" aria-labelledby="hero-heading" className="relative overflow-hidden">
+    <section
+      id="home"
+      aria-labelledby="hero-heading"
+      className="relative overflow-hidden"
+    >
       {/* Ambient glow */}
       <div
         aria-hidden="true"
@@ -54,7 +59,10 @@ export default function Hero() {
             {...fadeUp(0)}
             className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 font-mono text-xs tracking-[0.2em] text-secondary uppercase"
           >
-            <span aria-hidden="true" className="size-2 rounded-full bg-neon shadow-[0_0_10px_rgba(194,248,0,0.9)]" />
+            <span
+              aria-hidden="true"
+              className="size-2 rounded-full bg-neon shadow-[0_0_10px_rgba(194,248,0,0.9)]"
+            />
             Available for opportunities
           </motion.p>
 
@@ -63,11 +71,13 @@ export default function Hero() {
             id="hero-heading"
             className="mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl"
           >
-            Hi, I&apos;m{" "}
-            <span className="text-neon">Your Name</span>
+            Hi, I&apos;m <span className="text-neon">Your Name</span>
             <span className="block text-secondary">
               I build{" "}
-              <span aria-live="polite" className="inline-block min-w-45 text-white">
+              <span
+                aria-live="polite"
+                className="inline-block min-w-45 text-white"
+              >
                 <motion.span
                   key={activeRole}
                   initial={reduceMotion ? false : { opacity: 0, y: 8 }}
@@ -81,13 +91,19 @@ export default function Hero() {
             </span>
           </motion.h1>
 
-          <motion.p {...fadeUp(0.16)} className="mt-6 max-w-xl text-base leading-relaxed text-secondary sm:text-lg">
-            I craft fast, accessible, and visually striking web products with Next.js,
-            TypeScript, and modern design systems — ready for job applications, freelancing,
-            and personal branding.
+          <motion.p
+            {...fadeUp(0.16)}
+            className="mt-6 max-w-xl text-base leading-relaxed text-secondary sm:text-lg"
+          >
+            I craft fast, accessible, and visually striking web products with
+            Next.js, TypeScript, and modern design systems — ready for job
+            applications, freelancing, and personal branding.
           </motion.p>
 
-          <motion.div {...fadeUp(0.24)} className="mt-8 flex flex-wrap items-center gap-4">
+          <motion.div
+            {...fadeUp(0.24)}
+            className="mt-8 flex flex-wrap items-center gap-4"
+          >
             <Link
               href="#contact"
               className="inline-flex items-center gap-2 rounded-full bg-neon px-6 py-3 text-sm font-semibold text-black transition-transform hover:scale-[1.03] focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:outline-none"
@@ -116,7 +132,10 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
           className="relative mx-auto w-full max-w-sm lg:max-w-md"
         >
-          <div aria-hidden="true" className="absolute -inset-6 rounded-[2rem] bg-neon/10 blur-2xl" />
+          <div
+            aria-hidden="true"
+            className="absolute -inset-6 rounded-[2rem] bg-neon/10 blur-2xl"
+          />
           <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card shadow-[0_0_60px_rgba(194,248,0,0.08)]">
             {/* Placeholder frame for profile photo */}
             <div className="flex aspect-[4/5] items-center justify-center bg-[radial-gradient(circle_at_50%_30%,rgba(194,248,0,0.12),transparent_60%)]">
@@ -131,7 +150,9 @@ export default function Hero() {
               />
             </div>
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent p-5">
-              <p className="font-mono text-xs tracking-[0.2em] text-neon uppercase">Frontend Developer</p>
+              <p className="font-mono text-xs tracking-[0.2em] text-neon uppercase">
+                Frontend Developer
+              </p>
               <p className="text-sm text-white">Building the future web</p>
             </div>
           </div>
