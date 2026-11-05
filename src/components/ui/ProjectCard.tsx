@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, CodeXml } from "lucide-react";
 import { isPlaceholderHref, type Project } from "@/types";
+import ProjectPreviewFrame from "@/components/ui/ProjectPreviewFrame";
 
 type ProjectCardProps = {
   project: Project;
@@ -25,34 +25,8 @@ export default function ProjectCard({ project, index = 0 }: ProjectCardProps) {
       whileHover={reduceMotion ? undefined : { y: -6 }}
       className="group flex flex-col overflow-hidden rounded-3xl border border-border bg-card/60 transition-colors hover:border-neon/50 hover:bg-card"
     >
-      {/* Thumbnail */}
-      <div className="relative overflow-hidden">
-        <div
-          aria-hidden="true"
-          className="absolute -inset-6 bg-neon/10 blur-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        />
-        {project.image ? (
-          <Image
-            src={project.image}
-            alt={`${project.title} project preview`}
-            width={1200}
-            height={800}
-            className="relative aspect-[3/2] w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
-          />
-        ) : (
-          <div className="relative flex aspect-[3/2] w-full items-center justify-center bg-background">
-            <span className="font-mono text-xs tracking-[0.3em] text-secondary uppercase">
-              Preview coming soon
-            </span>
-          </div>
-        )}
-        {project.featured ? (
-          <span className="absolute top-4 left-4 rounded-full bg-neon px-3 py-1 font-mono text-[10px] font-bold tracking-[0.2em] text-black uppercase">
-            Featured
-          </span>
-        ) : null}
-      </div>
+      {/* Responsive Browser-Style Iframe Preview */}
+      <ProjectPreviewFrame project={project} />
 
       {/* Body */}
       <div className="flex flex-1 flex-col gap-4 p-6">

@@ -11,7 +11,8 @@ import {
   FaDatabase,
   FaCode,
 } from "react-icons/fa6";
-import { RiNextjsLine, RiTailwindCssLine, RiCodeFill } from "react-icons/ri";
+import { RiNextjsLine, RiTailwindCssLine } from "react-icons/ri";
+import { SiMongodb, SiExpress, SiTypescript } from "react-icons/si";
 import type { Skill } from "@/types";
 
 export type SkillCategory = {
@@ -23,10 +24,10 @@ export const skillCategories: readonly SkillCategory[] = [
   {
     title: "Frontend",
     items: [
-      { name: "HTML", icon: FaHtml5, category: "Frontend" },
-      { name: "CSS", icon: FaCss3Alt, category: "Frontend" },
+      { name: "HTML5", icon: FaHtml5, category: "Frontend" },
+      { name: "CSS3", icon: FaCss3Alt, category: "Frontend" },
       { name: "JavaScript", icon: FaJs, category: "Frontend" },
-      { name: "TypeScript", icon: RiCodeFill, category: "Frontend" },
+      { name: "TypeScript", icon: SiTypescript, category: "Frontend" },
       { name: "React", icon: FaReact, category: "Frontend" },
       { name: "Next.js", icon: RiNextjsLine, category: "Frontend" },
       { name: "Tailwind CSS", icon: RiTailwindCssLine, category: "Frontend" },
@@ -36,8 +37,9 @@ export const skillCategories: readonly SkillCategory[] = [
     title: "Backend",
     items: [
       { name: "Node.js", icon: FaNodeJs, category: "Backend" },
-      { name: "Express.js", icon: RiCodeFill, category: "Backend" },
+      { name: "Express.js", icon: SiExpress, category: "Backend" },
       { name: "REST APIs", icon: FaDatabase, category: "Backend" },
+      { name: "MongoDB", icon: SiMongodb, category: "Backend" },
     ],
   },
   {
