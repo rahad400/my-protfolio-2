@@ -75,8 +75,14 @@ export default function ProjectPreviewFrame({
               <button
                 type="button"
                 onClick={() => setShowFallback((prev) => !prev)}
-                title={showFallback ? "Switch back to iframe" : "Preview blocked? Switch to fallback"}
-                aria-label={showFallback ? "Show iframe preview" : "Show fallback preview"}
+                title={
+                  showFallback
+                    ? "Switch back to iframe"
+                    : "Preview blocked? Switch to fallback"
+                }
+                aria-label={
+                  showFallback ? "Show iframe preview" : "Show fallback preview"
+                }
                 className="hidden rounded p-1 text-secondary transition-colors hover:bg-background/80 hover:text-white sm:inline-flex"
               >
                 {showFallback ? (
@@ -236,4 +242,3 @@ export default function ProjectPreviewFrame({
     </div>
   );
 }
-
