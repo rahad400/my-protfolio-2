@@ -156,7 +156,7 @@ export default function Contact() {
                   Email
                 </span>
                 <span className="mt-1 block text-base font-medium text-white">
-                  rahad5609@gmail.com
+                  {contactInfo.email.replace(/^mailto:/, "")}
                 </span>
               </span>
               <FaArrowUpRightFromSquare

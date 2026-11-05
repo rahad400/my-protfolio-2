@@ -158,6 +158,8 @@ export default function AnimatedBackground() {
       {/* Perspective grid floor for depth */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:56px_56px] [mask-image:radial-gradient(ellipse_80%_70%_at_50%_40%,black,transparent)]" />
       <canvas ref={canvasRef} className="absolute inset-0" />
+      {/* Subtle scrim so translucent cards stay readable over the particles */}
+      <div className="absolute inset-0 bg-background/45" />
     </div>
   );
 }

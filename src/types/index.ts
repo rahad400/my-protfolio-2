@@ -1,4 +1,3 @@
-import type { LucideIcon } from "lucide-react";
 import type { IconType } from "react-icons";
 
 export type NavLink = {
@@ -15,7 +14,7 @@ export type SocialLink = {
 
 export type Skill = {
   name: string;
-  icon: LucideIcon;
+  icon: IconType;
   category: string;
 };
 

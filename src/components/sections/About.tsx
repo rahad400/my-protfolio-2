@@ -173,7 +173,7 @@ export default function About() {
                   width={640}
                   height={480}
                   className="h-64 w-full object-cover object-top sm:h-100"
-                  sizes=" profile100vw, 560px"
+                  sizes="(max-width: 560px) 100vw, 560px"
                 />
               </motion.div>
               <figcaption className="relative flex items-center justify-between border-t border-border bg-card px-5 py-4">

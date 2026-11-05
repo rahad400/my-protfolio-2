@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedinIn, FaXTwitter, FaEnvelope, FaWhatsapp } from "react-icons/fa6";
+import { FaGithub, FaLinkedinIn, FaEnvelope, FaWhatsapp } from "react-icons/fa6";
 import type { SocialLink } from "@/types";
 import { contactInfo } from "@/data/contact";
 
@@ -10,7 +10,6 @@ type SocialLinksProps = {
 const DEFAULT_SOCIALS: readonly SocialLink[] = [
   { label: "GitHub", href: contactInfo.github, icon: FaGithub },
   { label: "LinkedIn", href: contactInfo.linkedin, icon: FaLinkedinIn },
-  // { label: "Twitter / X", href: "https://x.com/", icon: FaXTwitter },
   { label: "Email", href: contactInfo.email, icon: FaEnvelope },
   { label: "WhatsApp", href: contactInfo.whatsapp, icon: FaWhatsapp },
 ];
