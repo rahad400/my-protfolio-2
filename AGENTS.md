@@ -33,5 +33,6 @@ Use npm; `package-lock.json` is the lockfile.
 - Tailwind is CSS-first: theme tokens belong in `src/app/globals.css` via `@theme`; there is no `tailwind.config.*`.
 - Do not add a PostCSS config for Tailwind. `next.config.ts` routes every `*.css` file through the `@tailwindcss/turbopack` loader, so styles require the Turbopack pipeline.
 - Edit only outside the `nextjs-agent-rules` block above; `next dev` regenerates that block.
-- `src/app/page.tsx` composes `components/sections/*`; `src/components/home/Hero.tsx` is a stale duplicate — do not edit or import it.
-- Content lives in `src/data/` (`projects.ts`, `skills.ts`, `contact.ts`) — edit data there, not in the section components. `contactInfo` in `contact.ts` is the single source used by `SocialLinks`, `Footer`, and the `Contact` section.
+- `src/app/page.tsx` composes `components/sections/*`.
+- `contactInfo` in `contact.ts` is the single source for email/GitHub/LinkedIn/WhatsApp used by `SocialLinks` and `Contact`; edit links there, not in components.
+- Deployed on Vercel (`.vercel/` present).
