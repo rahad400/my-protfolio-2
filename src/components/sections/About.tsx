@@ -15,7 +15,7 @@ const PROFILE = {
   role: "Frontend Developer",
   focus: "React, Next.js and TypeScript",
   interests: "UI Development, Web Design and Modern Web Technologies",
-  image: "/images/profile.jpeg",
+  image: "/images/profile2.jpg",
 };
 
 const HIGHLIGHTS: readonly { title: string; description: string; icon: LucideIcon }[] = [
@@ -146,15 +146,36 @@ export default function About() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="relative overflow-hidden rounded-2xl border border-border bg-card"
             >
-              <div aria-hidden="true" className="absolute -inset-6 bg-neon/10 blur-2xl" />
-              <Image
-                src={PROFILE.image}
-                alt={`Profile portrait of ${PROFILE.name}`}
-                width={640}
-                height={480}
-                className="relative h-64 w-full object-cover object-top sm:h-72"
-                sizes="(max-width: 1024px) 100vw, 560px"
+              <motion.div
+                aria-hidden="true"
+                initial={reduceMotion ? false : { opacity: 0.35, scale: 0.98 }}
+                animate={reduceMotion ? undefined : { opacity: [0.35, 0.75, 0.35], scale: [0.98, 1.02, 0.98] }}
+                transition={
+                  reduceMotion
+                    ? undefined
+                    : { duration: 6, repeat: Infinity, ease: "easeInOut" }
+                }
+                className="absolute -inset-6 bg-neon/10 blur-2xl"
               />
+              <motion.div
+                className="relative"
+                initial={reduceMotion ? false : { scale: 1.05 }}
+                animate={reduceMotion ? undefined : { scale: [1.05, 1, 1.05] }}
+                transition={
+                  reduceMotion
+                    ? undefined
+                    : { duration: 10, repeat: Infinity, ease: "easeInOut" }
+                }
+              >
+                <Image
+                  src={PROFILE.image}
+                  alt={`Profile portrait of ${PROFILE.name}`}
+                  width={640}
+                  height={480}
+                  className="h-64 w-full object-cover object-top sm:h-100"
+                  sizes=" profile100vw, 560px"
+                />
+              </motion.div>
               <figcaption className="relative flex items-center justify-between border-t border-border bg-card px-5 py-4">
                 <span className="text-sm font-medium text-white">{PROFILE.name}</span>
                 <span className="font-mono text-xs tracking-widest text-neon uppercase">

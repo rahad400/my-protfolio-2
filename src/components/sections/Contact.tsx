@@ -3,15 +3,14 @@
 import { useState, type FormEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
-  ArrowUpRight,
-  BriefcaseBusiness,
-  CodeXml,
-  Info,
-  LoaderCircle,
-  Mail,
-  MessageCircle,
-  Send,
-} from "lucide-react";
+  FaArrowUpRightFromSquare,
+  FaEnvelope,
+  FaGithub,
+  FaLinkedinIn,
+  FaPaperPlane,
+  FaWhatsapp,
+} from "react-icons/fa6";
+import { RiLoader5Line } from "react-icons/ri";
 import { contactInfo } from "@/data/contact";
 import SectionTitle from "@/components/ui/SectionTitle";
 
@@ -26,7 +25,12 @@ type FormErrors = Partial<Record<keyof FormValues, string>>;
 
 type FieldStatus = "idle" | "validating" | "opened" | "error";
 
-const INITIAL_VALUES: FormValues = { name: "", email: "", subject: "", message: "" };
+const INITIAL_VALUES: FormValues = {
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+};
 
 function validate(values: FormValues): FormErrors {
   const errors: FormErrors = {};
@@ -93,7 +97,7 @@ export default function Contact() {
       values.message.trim(),
     ].join("\n");
 
-    const mailto = `${contactInfo.email}?subject=${encodeURIComponent(
+    const mailto = `mailto:${contactInfo.email}?subject=${encodeURIComponent(
       values.subject.trim(),
     )}&body=${encodeURIComponent(body)}`;
 
@@ -119,7 +123,11 @@ export default function Contact() {
     touched[field] && errors[field] ? errors[field] : undefined;
 
   return (
-    <section id="contact" aria-labelledby="contact-heading" className="relative overflow-hidden py-20 lg:py-28">
+    <section
+      id="contact"
+      aria-labelledby="contact-heading"
+      className="relative overflow-hidden py-20 lg:py-28"
+    >
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_55%_45%_at_70%_10%,rgba(194,248,0,0.06),transparent_70%)]"
@@ -137,21 +145,24 @@ export default function Contact() {
           <div className="space-y-4">
             <motion.a
               {...reveal(0)}
-              href={contactInfo.email}
+              href={`mailto:${contactInfo.email}`}
               className="flex items-center gap-4 rounded-2xl border border-border bg-card/60 p-5 transition-colors hover:border-neon/50 hover:bg-card focus-visible:ring-2 focus-visible:ring-neon focus-visible:outline-none"
             >
               <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-border bg-background/60 text-neon">
-                <Mail className="size-5" aria-hidden="true" />
+                <FaEnvelope className="size-5" aria-hidden="true" />
               </span>
               <span>
                 <span className="block font-mono text-xs tracking-[0.25em] text-secondary uppercase">
                   Email
                 </span>
                 <span className="mt-1 block text-base font-medium text-white">
-                  hello@example.com
+                  rahad5609@gmail.com
                 </span>
               </span>
-              <ArrowUpRight className="ml-auto size-4 shrink-0 text-secondary" aria-hidden="true" />
+              <FaArrowUpRightFromSquare
+                className="ml-auto size-4 shrink-0 text-secondary"
+                aria-hidden="true"
+              />
             </motion.a>
 
             <motion.a
@@ -162,17 +173,20 @@ export default function Contact() {
               className="flex items-center gap-4 rounded-2xl border border-border bg-card/60 p-5 transition-colors hover:border-neon/50 hover:bg-card focus-visible:ring-2 focus-visible:ring-neon focus-visible:outline-none"
             >
               <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-border bg-background/60 text-neon">
-                <CodeXml className="size-5" aria-hidden="true" />
+                <FaGithub className="size-5" aria-hidden="true" />
               </span>
               <span>
                 <span className="block font-mono text-xs tracking-[0.25em] text-secondary uppercase">
                   GitHub
                 </span>
                 <span className="mt-1 block text-base font-medium text-white">
-                  github.com — @username
+                  github.com — @rahad400
                 </span>
               </span>
-              <ArrowUpRight className="ml-auto size-4 shrink-0 text-secondary" aria-hidden="true" />
+              <FaArrowUpRightFromSquare
+                className="ml-auto size-4 shrink-0 text-secondary"
+                aria-hidden="true"
+              />
             </motion.a>
 
             <motion.a
@@ -183,17 +197,20 @@ export default function Contact() {
               className="flex items-center gap-4 rounded-2xl border border-border bg-card/60 p-5 transition-colors hover:border-neon/50 hover:bg-card focus-visible:ring-2 focus-visible:ring-neon focus-visible:outline-none"
             >
               <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-border bg-background/60 text-neon">
-                <BriefcaseBusiness className="size-5" aria-hidden="true" />
+                <FaLinkedinIn className="size-5" aria-hidden="true" />
               </span>
               <span>
                 <span className="block font-mono text-xs tracking-[0.25em] text-secondary uppercase">
                   LinkedIn
                 </span>
                 <span className="mt-1 block text-base font-medium text-white">
-                  linkedin.com — in/username
+                  linkedin.com — in/rahad10
                 </span>
               </span>
-              <ArrowUpRight className="ml-auto size-4 shrink-0 text-secondary" aria-hidden="true" />
+              <FaArrowUpRightFromSquare
+                className="ml-auto size-4 shrink-0 text-secondary"
+                aria-hidden="true"
+              />
             </motion.a>
 
             <motion.a
@@ -204,7 +221,7 @@ export default function Contact() {
               className="flex items-center gap-4 rounded-2xl border border-border bg-card/60 p-5 transition-colors hover:border-neon/50 hover:bg-card focus-visible:ring-2 focus-visible:ring-neon focus-visible:outline-none"
             >
               <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-border bg-background/60 text-neon">
-                <MessageCircle className="size-5" aria-hidden="true" />
+                <FaWhatsapp className="size-5" aria-hidden="true" />
               </span>
               <span>
                 <span className="block font-mono text-xs tracking-[0.25em] text-secondary uppercase">
@@ -214,14 +231,17 @@ export default function Contact() {
                   Chat on WhatsApp
                 </span>
               </span>
-              <ArrowUpRight className="ml-auto size-4 shrink-0 text-secondary" aria-hidden="true" />
+              <FaArrowUpRightFromSquare
+                className="ml-auto size-4 shrink-0 text-secondary"
+                aria-hidden="true"
+              />
             </motion.a>
 
             {/* <motion.p
               {...reveal(0.4)}
               className="flex items-start gap-3 rounded-2xl border border-border bg-card/40 px-5 py-4 text-sm leading-relaxed text-secondary"
             >
-              <Info className="mt-0.5 size-4 shrink-0 text-neon" aria-hidden="true" />
+              <FaInfo className="mt-0.5 size-4 shrink-0 text-neon" aria-hidden="true" />
               This form doesn&apos;t send messages directly — it opens your email client so
               you can review and send. Replace the placeholder URLs in{" "}
               <code className="rounded bg-background px-1 py-0.5 font-mono text-xs text-neon">
@@ -241,7 +261,10 @@ export default function Contact() {
           >
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
-                <label htmlFor="contact-name" className="mb-2 block text-sm font-medium text-white">
+                <label
+                  htmlFor="contact-name"
+                  className="mb-2 block text-sm font-medium text-white"
+                >
                   Name
                 </label>
                 <input
@@ -254,18 +277,27 @@ export default function Contact() {
                   onChange={(e) => updateField("name", e.target.value)}
                   onBlur={() => setTouched((prev) => ({ ...prev, name: true }))}
                   aria-invalid={Boolean(fieldError("name"))}
-                  aria-describedby={fieldError("name") ? "contact-name-error" : undefined}
+                  aria-describedby={
+                    fieldError("name") ? "contact-name-error" : undefined
+                  }
                   className={inputClass(Boolean(fieldError("name")))}
                 />
                 {fieldError("name") ? (
-                  <p id="contact-name-error" role="alert" className="mt-2 text-sm text-red-400">
+                  <p
+                    id="contact-name-error"
+                    role="alert"
+                    className="mt-2 text-sm text-red-400"
+                  >
                     {fieldError("name")}
                   </p>
                 ) : null}
               </div>
 
               <div>
-                <label htmlFor="contact-email" className="mb-2 block text-sm font-medium text-white">
+                <label
+                  htmlFor="contact-email"
+                  className="mb-2 block text-sm font-medium text-white"
+                >
                   Email
                 </label>
                 <input
@@ -276,13 +308,21 @@ export default function Contact() {
                   placeholder="you@example.com"
                   value={values.email}
                   onChange={(e) => updateField("email", e.target.value)}
-                  onBlur={() => setTouched((prev) => ({ ...prev, email: true }))}
+                  onBlur={() =>
+                    setTouched((prev) => ({ ...prev, email: true }))
+                  }
                   aria-invalid={Boolean(fieldError("email"))}
-                  aria-describedby={fieldError("email") ? "contact-email-error" : undefined}
+                  aria-describedby={
+                    fieldError("email") ? "contact-email-error" : undefined
+                  }
                   className={inputClass(Boolean(fieldError("email")))}
                 />
                 {fieldError("email") ? (
-                  <p id="contact-email-error" role="alert" className="mt-2 text-sm text-red-400">
+                  <p
+                    id="contact-email-error"
+                    role="alert"
+                    className="mt-2 text-sm text-red-400"
+                  >
                     {fieldError("email")}
                   </p>
                 ) : null}
@@ -290,7 +330,10 @@ export default function Contact() {
             </div>
 
             <div>
-              <label htmlFor="contact-subject" className="mb-2 block text-sm font-medium text-white">
+              <label
+                htmlFor="contact-subject"
+                className="mb-2 block text-sm font-medium text-white"
+              >
                 Subject
               </label>
               <input
@@ -300,20 +343,31 @@ export default function Contact() {
                 placeholder="Project inquiry"
                 value={values.subject}
                 onChange={(e) => updateField("subject", e.target.value)}
-                onBlur={() => setTouched((prev) => ({ ...prev, subject: true }))}
+                onBlur={() =>
+                  setTouched((prev) => ({ ...prev, subject: true }))
+                }
                 aria-invalid={Boolean(fieldError("subject"))}
-                aria-describedby={fieldError("subject") ? "contact-subject-error" : undefined}
+                aria-describedby={
+                  fieldError("subject") ? "contact-subject-error" : undefined
+                }
                 className={inputClass(Boolean(fieldError("subject")))}
               />
               {fieldError("subject") ? (
-                <p id="contact-subject-error" role="alert" className="mt-2 text-sm text-red-400">
+                <p
+                  id="contact-subject-error"
+                  role="alert"
+                  className="mt-2 text-sm text-red-400"
+                >
                   {fieldError("subject")}
                 </p>
               ) : null}
             </div>
 
             <div>
-              <label htmlFor="contact-message" className="mb-2 block text-sm font-medium text-white">
+              <label
+                htmlFor="contact-message"
+                className="mb-2 block text-sm font-medium text-white"
+              >
                 Message
               </label>
               <textarea
@@ -323,20 +377,31 @@ export default function Contact() {
                 placeholder="Tell me about your project..."
                 value={values.message}
                 onChange={(e) => updateField("message", e.target.value)}
-                onBlur={() => setTouched((prev) => ({ ...prev, message: true }))}
+                onBlur={() =>
+                  setTouched((prev) => ({ ...prev, message: true }))
+                }
                 aria-invalid={Boolean(fieldError("message"))}
-                aria-describedby={fieldError("message") ? "contact-message-error" : undefined}
+                aria-describedby={
+                  fieldError("message") ? "contact-message-error" : undefined
+                }
                 className={`${inputClass(Boolean(fieldError("message")))} resize-y`}
               />
               {fieldError("message") ? (
-                <p id="contact-message-error" role="alert" className="mt-2 text-sm text-red-400">
+                <p
+                  id="contact-message-error"
+                  role="alert"
+                  className="mt-2 text-sm text-red-400"
+                >
                   {fieldError("message")}
                 </p>
               ) : null}
             </div>
 
             {status === "error" && Object.keys(errors).length > 0 ? (
-              <p role="alert" className="rounded-xl border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-300">
+              <p
+                role="alert"
+                className="rounded-xl border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-300"
+              >
                 Please fix the highlighted fields and try again.
               </p>
             ) : null}
@@ -347,8 +412,9 @@ export default function Contact() {
                 role="status"
                 className="rounded-xl border border-neon/40 bg-neon/10 px-4 py-3 text-sm text-neon"
               >
-                Your email client should have opened with your message prefilled. Press send
-                there to deliver it — nothing is sent from this website.
+                Your email client should have opened with your message
+                prefilled. Press send there to deliver it — nothing is sent from
+                this website.
               </p>
             ) : null}
 
@@ -359,13 +425,16 @@ export default function Contact() {
             >
               {isSubmitting ? (
                 <>
-                  <LoaderCircle className="size-4 animate-spin" aria-hidden="true" />
+                  <RiLoader5Line
+                    className="size-4 animate-spin"
+                    aria-hidden="true"
+                  />
                   Opening your email client...
                 </>
               ) : (
                 <>
                   Send message
-                  <Send className="size-4" aria-hidden="true" />
+                  <FaPaperPlane className="size-4" aria-hidden="true" />
                 </>
               )}
             </button>

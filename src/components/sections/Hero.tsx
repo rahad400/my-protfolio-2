@@ -124,26 +124,61 @@ export default function Hero() {
         {/* Photo */}
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+          animate={
+            reduceMotion
+              ? { opacity: 1, scale: 1, y: 0 }
+              : { opacity: 1, scale: 1, y: [0, -12, 0] }
+          }
+          transition={
+            reduceMotion
+              ? { duration: 0.7, delay: 0.2, ease: "easeOut" }
+              : {
+                  opacity: { duration: 0.7, delay: 0.2, ease: "easeOut" },
+                  scale: { duration: 0.7, delay: 0.2, ease: "easeOut" },
+                  y: {
+                    duration: 6,
+                    delay: 0.9,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  },
+                }
+          }
           className="relative mx-auto w-full max-w-sm lg:max-w-md"
         >
-          <div
+          <motion.div
             aria-hidden="true"
+            initial={reduceMotion ? false : { opacity: 0.35, scale: 0.98 }}
+            animate={reduceMotion ? undefined : { opacity: [0.35, 0.75, 0.35], scale: [0.98, 1.02, 0.98] }}
+            transition={
+              reduceMotion
+                ? undefined
+                : { duration: 6, repeat: Infinity, ease: "easeInOut" }
+            }
             className="absolute -inset-6 rounded-[2rem] bg-neon/10 blur-2xl"
           />
           <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card shadow-[0_0_60px_rgba(194,248,0,0.08)]">
             {/* Placeholder frame for profile photo */}
             <div className="flex aspect-[4/5] items-center justify-center bg-[radial-gradient(circle_at_50%_30%,rgba(194,248,0,0.12),transparent_60%)]">
-              <Image
-                src={PROFILE_IMAGE}
-                alt="Profile portrait"
-                width={640}
-                height={800}
-                priority
-                className="h-full w-full object-cover"
-                sizes="(max-width: 1024px) 100vw, 400px"
-              />
+              <motion.div
+                className="h-full w-full"
+                initial={reduceMotion ? false : { scale: 1.08 }}
+                animate={reduceMotion ? undefined : { scale: [1.08, 1, 1.08] }}
+                transition={
+                  reduceMotion
+                    ? undefined
+                    : { duration: 10, repeat: Infinity, ease: "easeInOut" }
+                }
+              >
+                <Image
+                  src={PROFILE_IMAGE}
+                  alt="Profile portrait"
+                  width={640}
+                  height={800}
+                  priority
+                  className="h-full w-full object-cover"
+                  sizes="(max-width: 1024px) 100vw, 400px"
+                />
+              </motion.div>
             </div>
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent p-5">
               <p className="font-mono text-xs tracking-[0.2em] text-neon uppercase">
