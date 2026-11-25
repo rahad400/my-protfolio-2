@@ -97,7 +97,7 @@ export default function Contact() {
       values.message.trim(),
     ].join("\n");
 
-    const mailto = `mailto:${contactInfo.email}?subject=${encodeURIComponent(
+    const mailto = `${contactInfo.email}?subject=${encodeURIComponent(
       values.subject.trim(),
     )}&body=${encodeURIComponent(body)}`;
 
@@ -136,8 +136,8 @@ export default function Contact() {
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionTitle
           eyebrow="Get in touch"
-          title="Contact Me"
-          description="Have a project in mind or just want to say hello? Fill out the form — it opens your email client ready to send."
+          title="Have something in mind? Let's talk."
+          description="I'm always interested in learning about new ideas, meaningful projects, and opportunities to grow as a developer. If you'd like to connect, feel free to reach out."
         />
 
         <div className="mt-14 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
@@ -145,7 +145,7 @@ export default function Contact() {
           <div className="space-y-4">
             <motion.a
               {...reveal(0)}
-              href={`mailto:${contactInfo.email}`}
+              href={contactInfo.email}
               className="flex items-center gap-4 rounded-2xl border border-border bg-card/60 p-5 transition-colors hover:border-neon/50 hover:bg-card focus-visible:ring-2 focus-visible:ring-neon focus-visible:outline-none"
             >
               <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-border bg-background/60 text-neon">

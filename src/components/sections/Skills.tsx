@@ -17,9 +17,9 @@ export default function Skills() {
 
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionTitle
-          eyebrow="What I work with"
-          title="Skills & Tools"
-          description="The technologies and tools I use to build modern web experiences."
+          eyebrow="My Toolkit"
+          title="Tools I use to bring ideas to life."
+          description="The technologies and tools I build with."
         />
 
         <div className="mt-14 grid gap-10 lg:grid-cols-2 lg:gap-12">

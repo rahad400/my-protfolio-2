@@ -1,59 +1,45 @@
 "use client";
 
-import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import {
-  Braces,
-  MonitorSmartphone,
-  RefreshCcw,
+  Code2,
+  Layers,
+  Lightbulb,
   Sparkles,
   type LucideIcon,
 } from "lucide-react";
 
-const PROFILE = {
-  name: "Rahad",
-  role: "Frontend Developer",
-  focus: "React, Next.js and TypeScript",
-  interests: "UI Development, Web Design and Modern Web Technologies",
-  image: "/images/profile2.jpg",
-};
-
-const HIGHLIGHTS: readonly { title: string; description: string; icon: LucideIcon }[] = [
-  {
-    title: "Clean Code",
-    description: "Readable, typed and maintainable code.",
-    icon: Braces,
-  },
-  {
-    title: "Responsive Design",
-    description: "Interfaces that work beautifully on every screen.",
-    icon: MonitorSmartphone,
-  },
-  {
-    title: "Continuous Learning",
-    description: "Always exploring new tools and better patterns.",
-    icon: RefreshCcw,
-  },
-];
-
-const INFO_CARDS: readonly { label: string; value: string }[] = [
-  { label: "Name", value: PROFILE.name },
-  { label: "Role", value: PROFILE.role },
-  { label: "Focus", value: PROFILE.focus },
-];
+const DEV_INFO: readonly { label: string; value: string; icon: LucideIcon }[] =
+  [
+    { label: "Current Focus", value: "Full-Stack Development", icon: Layers },
+    {
+      label: "Main Stack",
+      value: "Next.js, React, TypeScript, Node.js",
+      icon: Code2,
+    },
+    {
+      label: "Mindset",
+      value: "Building through practical projects",
+      icon: Lightbulb,
+    },
+  ];
 
 export default function About() {
   const reduceMotion = useReducedMotion();
 
   const reveal = (delay: number = 0) => ({
-    initial: reduceMotion ? false : { opacity: 0, y: 20 },
+    initial: reduceMotion ? false : ({ opacity: 0, y: 20 } as const),
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, margin: "-80px" },
     transition: { duration: 0.6, delay, ease: "easeOut" as const },
   });
 
   return (
-    <section id="about" aria-labelledby="about-heading" className="relative overflow-hidden py-20 lg:py-28">
+    <section
+      id="about"
+      aria-labelledby="about-heading"
+      className="relative overflow-hidden py-20 lg:py-28"
+    >
       {/* Ambient glow */}
       <div
         aria-hidden="true"
@@ -62,14 +48,14 @@ export default function About() {
 
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 lg:items-start">
-          {/* Left — heading, intro, description */}
+          {/* Left — text */}
           <div>
             <motion.p
               {...reveal(0)}
               className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 font-mono text-xs tracking-[0.25em] text-neon uppercase"
             >
               <Sparkles className="size-3.5" aria-hidden="true" />
-              Get to know me
+              About Me
             </motion.p>
 
             <motion.h2
@@ -77,112 +63,58 @@ export default function About() {
               id="about-heading"
               className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl"
             >
-              About Me
+              A little about how I build.
             </motion.h2>
 
             <motion.p
               {...reveal(0.16)}
               className="mt-5 text-base leading-relaxed text-white sm:text-lg"
             >
-              I&apos;m a passionate Frontend Developer who enjoys building modern, responsive
-              and user-friendly web applications.
+              I&apos;m interested in building useful things for the web. My
+              journey started with learning programming fundamentals, and over
+              time I became curious about how websites work beyond what users
+              see.
             </motion.p>
 
             <motion.p
               {...reveal(0.24)}
-              className="mt-4 max-w-2xl text-base leading-relaxed text-secondary"
+              className="mt-4 text-base leading-relaxed text-secondary"
             >
-              I focus on creating clean user interfaces and meaningful digital experiences
-              using React, Next.js and TypeScript. I enjoy learning new technologies, solving
-              problems and continuously improving my development skills.
+              I enjoy working on interfaces, connecting them with backend
+              functionality, and learning how different parts of an application
+              fit together.
             </motion.p>
 
-            {/* Highlights */}
-            <ul className="mt-10 grid gap-4 sm:grid-cols-3">
-              {HIGHLIGHTS.map((item, index) => (
-                <motion.li
-                  key={item.title}
-                  {...reveal(0.3 + index * 0.08)}
-                  className="group rounded-2xl border border-border bg-card/60 p-5 transition-colors hover:border-neon/50 hover:bg-card"
-                >
-                  <item.icon className="size-6 text-neon" aria-hidden="true" />
-                  <h3 className="mt-4 text-base font-semibold text-white">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-secondary">{item.description}</p>
-                </motion.li>
-              ))}
-            </ul>
+            <motion.p
+              {...reveal(0.32)}
+              className="mt-4 text-base leading-relaxed text-secondary"
+            >
+              I&apos;m still growing as a developer, and every project gives me
+              something new to understand and improve.
+            </motion.p>
           </div>
 
-          {/* Right — info cards + profile */}
+          {/* Right — dev info card */}
           <div className="space-y-4">
-            {INFO_CARDS.map((card, index) => (
+            {DEV_INFO.map((item, index) => (
               <motion.div
-                key={card.label}
+                key={item.label}
                 {...reveal(0.15 + index * 0.08)}
-                className="flex items-center justify-between gap-4 rounded-2xl border border-border bg-card/60 px-5 py-4 transition-colors hover:border-neon/50"
+                className="flex items-start gap-4 rounded-2xl border border-border bg-card/60 p-5 transition-colors hover:border-neon/50 hover:bg-card"
               >
-                <span className="font-mono text-xs tracking-[0.25em] text-secondary uppercase">
-                  {card.label}
+                <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-border bg-background/60 text-neon">
+                  <item.icon className="size-5" aria-hidden="true" />
                 </span>
-                <span className="text-right text-base font-semibold text-white">{card.value}</span>
+                <div>
+                  <span className="font-mono text-xs tracking-[0.25em] text-secondary uppercase">
+                    {item.label}
+                  </span>
+                  <p className="mt-1 text-base font-medium text-white">
+                    {item.value}
+                  </p>
+                </div>
               </motion.div>
             ))}
-
-            <motion.div
-              {...reveal(0.35)}
-              className="rounded-2xl border border-border bg-card/60 px-5 py-4 transition-colors hover:border-neon/50"
-            >
-              <span className="font-mono text-xs tracking-[0.25em] text-secondary uppercase">
-                Interests
-              </span>
-              <p className="mt-2 text-base text-white">{PROFILE.interests}</p>
-            </motion.div>
-
-            {/* Profile photo */}
-            <motion.figure
-              initial={reduceMotion ? false : { opacity: 0, scale: 0.98 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="relative overflow-hidden rounded-2xl border border-border bg-card"
-            >
-              <motion.div
-                aria-hidden="true"
-                initial={reduceMotion ? false : { opacity: 0.35, scale: 0.98 }}
-                animate={reduceMotion ? undefined : { opacity: [0.35, 0.75, 0.35], scale: [0.98, 1.02, 0.98] }}
-                transition={
-                  reduceMotion
-                    ? undefined
-                    : { duration: 6, repeat: Infinity, ease: "easeInOut" }
-                }
-                className="absolute -inset-6 bg-neon/10 blur-2xl"
-              />
-              <motion.div
-                className="relative"
-                initial={reduceMotion ? false : { scale: 1.05 }}
-                animate={reduceMotion ? undefined : { scale: [1.05, 1, 1.05] }}
-                transition={
-                  reduceMotion
-                    ? undefined
-                    : { duration: 10, repeat: Infinity, ease: "easeInOut" }
-                }
-              >
-                <Image
-                  src={PROFILE.image}
-                  alt={`Profile portrait of ${PROFILE.name}`}
-                  width={640}
-                  height={480}
-                  className="h-64 w-full object-cover object-top sm:h-100"
-                  sizes="(max-width: 560px) 100vw, 560px"
-                />
-              </motion.div>
-              <figcaption className="relative flex items-center justify-between border-t border-border bg-card px-5 py-4">
-                <span className="text-sm font-medium text-white">{PROFILE.name}</span>
-                <span className="font-mono text-xs tracking-widest text-neon uppercase">
-                  {PROFILE.role}
-                </span>
-              </figcaption>
-            </motion.figure>
           </div>
         </div>
       </div>

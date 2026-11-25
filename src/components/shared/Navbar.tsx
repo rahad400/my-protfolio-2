@@ -17,12 +17,13 @@ const DEFAULT_LINKS: readonly NavLink[] = [
   { label: "About", href: "#about", id: "about" },
   { label: "Skills", href: "#skills", id: "skills" },
   { label: "Projects", href: "#projects", id: "projects" },
-  // { label: "Journey", href: "#journey", id: "journey" },
+  { label: "Journey", href: "#journey", id: "journey" },
+  { label: "Education", href: "#education", id: "education" },
   { label: "Contact", href: "#contact", id: "contact" },
 ];
 
 export default function Navbar({
-  brand = "DEV.",
+  brand = "RAHAD",
   links = DEFAULT_LINKS,
   cvHref = "/resume/Rahad-CV.pdf",
 }: NavbarProps) {

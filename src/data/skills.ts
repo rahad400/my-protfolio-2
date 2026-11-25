@@ -8,8 +8,9 @@ import {
   FaGitAlt,
   FaNpm,
   FaFigma,
-  FaDatabase,
   FaCode,
+  FaServer,
+  FaShieldHalved,
 } from "react-icons/fa6";
 import { RiNextjsLine, RiTailwindCssLine } from "react-icons/ri";
 import { SiMongodb, SiExpress, SiTypescript } from "react-icons/si";
@@ -38,8 +39,14 @@ export const skillCategories: readonly SkillCategory[] = [
     items: [
       { name: "Node.js", icon: FaNodeJs, category: "Backend" },
       { name: "Express.js", icon: SiExpress, category: "Backend" },
-      { name: "REST APIs", icon: FaDatabase, category: "Backend" },
-      { name: "MongoDB", icon: SiMongodb, category: "Backend" },
+      { name: "REST API", icon: FaServer, category: "Backend" },
+      { name: "Better Auth", icon: FaShieldHalved, category: "Backend" },
+    ],
+  },
+  {
+    title: "Database",
+    items: [
+      { name: "MongoDB", icon: SiMongodb, category: "Database" },
     ],
   },
   {

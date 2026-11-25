@@ -14,7 +14,7 @@ export default function Projects() {
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionTitle
           eyebrow="Selected work"
-          title="Featured Projects"
+          title="Things I've been building."
           description="A look at what I'm building — real projects with live demos and source code."
         />
         <ul className="mt-14 grid gap-8 md:grid-cols-2">

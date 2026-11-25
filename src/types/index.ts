@@ -30,6 +30,21 @@ export type Project = {
   featured?: boolean;
 };
 
+export type JourneyMilestone = {
+  date: string;
+  title: string;
+  description: string;
+  highlight?: boolean;
+};
+
+export type EducationEntry = {
+  qualification: string;
+  status: string;
+  description: string;
+  institution?: string;
+  group?: string;
+};
+
 export function isPlaceholderHref(href: string | undefined): boolean {
   return !href || href === "#";
 }

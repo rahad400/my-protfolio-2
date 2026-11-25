@@ -16,9 +16,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Rahad — Frontend Developer",
+  title: "Rahad — Junior Full-Stack Developer",
   description:
-    "Portfolio of Rahad, a Frontend Developer building fast, accessible web products with Next.js, TypeScript, and modern design systems.",
+    "Portfolio of Rahad, a Junior Full-Stack Developer building modern web applications with React, Next.js, TypeScript, and Node.js.",
+  openGraph: {
+    title: "Rahad — Junior Full-Stack Developer",
+    description:
+      "Portfolio of Rahad, a Junior Full-Stack Developer building modern web applications with React, Next.js, TypeScript, and Node.js.",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rahad — Junior Full-Stack Developer",
+    description:
+      "Portfolio of Rahad, a Junior Full-Stack Developer building modern web applications with React, Next.js, TypeScript, and Node.js.",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
