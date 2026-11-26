@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { GraduationCap } from "lucide-react";
 import { educationEntries } from "@/data/education";
 import SectionTitle from "@/components/ui/SectionTitle";
+import SectionDivider from "@/components/ui/SectionDivider";
 
 export default function Education() {
   const reduceMotion = useReducedMotion();
@@ -24,7 +25,7 @@ export default function Education() {
       {/* Ambient glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_55%_45%_at_30%_15%,rgba(194,248,0,0.06),transparent_70%)]"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_55%_45%_at_50%_10%,rgba(194,248,0,0.06),transparent_70%)]"
       />
 
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -74,6 +75,7 @@ export default function Education() {
           ))}
         </div>
       </div>
+      <SectionDivider />
     </section>
   );
 }

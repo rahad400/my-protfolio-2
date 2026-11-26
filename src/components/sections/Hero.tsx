@@ -5,8 +5,9 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
 import SocialLinks from "@/components/shared/SocialLinks";
 import Button from "@/components/ui/Button";
+import SectionDivider from "@/components/ui/SectionDivider";
 
-const PROFILE_IMAGE = "/images/profile.jpeg";
+const PROFILE_IMAGE = "/image/rahad.png";
 
 export default function Hero() {
   const reduceMotion = useReducedMotion();
@@ -23,23 +24,33 @@ export default function Hero() {
       aria-labelledby="hero-heading"
       className="relative overflow-hidden"
     >
-      {/* Ambient glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_60%_50%_at_70%_20%,rgba(194,248,0,0.08),transparent_70%)]"
-      />
       {/* Grid */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:56px_56px] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]"
       />
+      {/* Darker top-center */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-64 bg-[radial-gradient(ellipse_55%_100%_at_50%_0%,rgba(0,0,0,0.9),transparent_75%)]"
+      />
+      {/* Balanced bottom corners */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-56 bg-[linear-gradient(to_right,rgba(8,10,8,0.98)_0%,rgba(8,10,8,0.85)_25%,rgba(8,10,8,0.35)_42%,transparent_55%,rgba(8,10,8,0.35)_68%,rgba(8,10,8,0.85)_82%,rgba(8,10,8,0.98)_100%)]"
+      />
+      {/* Left bottom matched to right */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-0 z-10 h-56 w-1/2 bg-[linear-gradient(to_right,rgba(8,10,8,0.95),rgba(8,10,8,0.65)_45%,transparent_100%)]"
+      />
 
-      <div className="mx-auto grid w-full max-w-7xl gap-12 px-4 pt-32 pb-20 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-16 lg:px-8 lg:pt-40 lg:pb-28">
+      <div className="mx-auto grid w-full max-w-7xl gap-12 px-4 pt-32 pb-20 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-start lg:gap-16 lg:px-8 lg:pt-40 lg:pb-28">
         {/* Copy */}
         <div className="max-w-2xl">
           <motion.p
             {...fadeUp(0)}
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 font-mono text-xs tracking-[0.2em] text-secondary uppercase"
+            className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-1.5 font-mono text-xs tracking-[0.2em] text-secondary uppercase backdrop-blur-sm"
           >
             <span
               aria-hidden="true"
@@ -51,17 +62,17 @@ export default function Hero() {
           <motion.h1
             {...fadeUp(0.08)}
             id="hero-heading"
-            className="mt-6 text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl"
+            className="mt-6 text-4xl leading-[1.05] font-bold tracking-tight text-white sm:text-5xl lg:text-7xl"
           >
             Hi, I&apos;m <span className="text-neon">Rahad</span>
-            <span className="mt-2 block text-lg font-medium text-secondary sm:text-xl lg:text-2xl">
-              Junior Full-Stack Developer
+            <span className="mt-3 block text-xl font-semibold leading-snug text-secondary sm:text-2xl lg:text-3xl">
+              Full-Stack Developer
             </span>
           </motion.h1>
 
           <motion.p
             {...fadeUp(0.16)}
-            className="mt-4 text-xl font-semibold tracking-tight text-white sm:text-2xl"
+            className="mt-5 text-xl font-semibold leading-snug tracking-tight text-white sm:text-2xl lg:text-3xl"
           >
             I build web experiences that solve real problems.
           </motion.p>
@@ -102,18 +113,17 @@ export default function Hero() {
 
         {/* Photo */}
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
           animate={
             reduceMotion
-              ? { opacity: 1, scale: 1, y: 0 }
-              : { opacity: 1, scale: 1, y: [0, -12, 0] }
+              ? { opacity: 1, y: 0 }
+              : { opacity: 1, y: [0, -10, 0] }
           }
           transition={
             reduceMotion
               ? { duration: 0.7, delay: 0.2, ease: "easeOut" }
               : {
                   opacity: { duration: 0.7, delay: 0.2, ease: "easeOut" },
-                  scale: { duration: 0.7, delay: 0.2, ease: "easeOut" },
                   y: {
                     duration: 6,
                     delay: 0.9,
@@ -122,60 +132,30 @@ export default function Hero() {
                   },
                 }
           }
-          className="relative mx-auto w-full max-w-sm lg:max-w-md"
+          className="relative mx-auto h-[26rem] w-full max-w-sm sm:h-[32rem] lg:-mt-12 lg:h-[48rem] lg:max-w-none"
         >
-          <motion.div
-            aria-hidden="true"
-            initial={reduceMotion ? false : { opacity: 0.35, scale: 0.98 }}
-            animate={
-              reduceMotion
-                ? undefined
-                : {
-                    opacity: [0.35, 0.75, 0.35],
-                    scale: [0.98, 1.02, 0.98],
-                  }
-            }
-            transition={
-              reduceMotion
-                ? undefined
-                : { duration: 6, repeat: Infinity, ease: "easeInOut" }
-            }
-            className="absolute -inset-6 rounded-[2rem] bg-neon/10 blur-2xl"
-          />
-          <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card shadow-[0_0_60px_rgba(194,248,0,0.08)]">
-            <div className="flex aspect-[4/5] items-center justify-center bg-[radial-gradient(circle_at_50%_30%,rgba(194,248,0,0.12),transparent_60%)]">
-              <motion.div
-                className="h-full w-full"
-                initial={reduceMotion ? false : { scale: 1.08 }}
-                animate={
-                  reduceMotion ? undefined : { scale: [1.08, 1, 1.08] }
-                }
-                transition={
-                  reduceMotion
-                    ? undefined
-                    : { duration: 10, repeat: Infinity, ease: "easeInOut" }
-                }
-              >
-                <Image
-                  src={PROFILE_IMAGE}
-                  alt="Rahad — Junior Full-Stack Developer"
-                  width={640}
-                  height={800}
-                  priority
-                  className="h-full w-full object-cover"
-                  sizes="(max-width: 1024px) 100vw, 400px"
-                />
-              </motion.div>
-            </div>
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent p-5">
-              <p className="font-mono text-xs tracking-[0.2em] text-neon uppercase">
-                Junior Full-Stack Developer
-              </p>
-              <p className="text-sm text-white">Building the future web</p>
-            </div>
+          <div className="relative z-10 h-full w-full [mask-image:linear-gradient(to_bottom,black_78%,rgba(8,10,8,0.85)_90%,transparent_100%)]">
+            <Image
+              src={PROFILE_IMAGE}
+              alt="Rahad — Full-Stack Developer"
+              fill
+              priority
+              className="object-cover object-top"
+              sizes="(max-width: 640px) 90vw, (max-width: 1024px) 60vw, 46vw"
+            />
           </div>
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 left-0 z-20 w-10 bg-gradient-to-r from-background/90 via-background/60 to-transparent"
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 right-0 z-20 w-10 bg-gradient-to-l from-background/90 via-background/60 to-transparent"
+          />
         </motion.div>
       </div>
+
+      <SectionDivider />
     </section>
   );
 }

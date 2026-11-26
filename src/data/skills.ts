@@ -43,12 +43,7 @@ export const skillCategories: readonly SkillCategory[] = [
       { name: "Better Auth", icon: FaShieldHalved, category: "Backend" },
     ],
   },
-  {
-    title: "Database",
-    items: [
-      { name: "MongoDB", icon: SiMongodb, category: "Database" },
-    ],
-  },
+
   {
     title: "Tools",
     items: [
@@ -58,5 +53,10 @@ export const skillCategories: readonly SkillCategory[] = [
       { name: "npm", icon: FaNpm, category: "Tools" },
       { name: "Figma", icon: FaFigma, category: "Tools" },
     ],
+  },
+
+  {
+    title: "Database",
+    items: [{ name: "MongoDB", icon: SiMongodb, category: "Database" }],
   },
 ];

@@ -23,7 +23,7 @@ type FormValues = {
 
 type FormErrors = Partial<Record<keyof FormValues, string>>;
 
-type FieldStatus = "idle" | "validating" | "opened" | "error";
+type SubmitStatus = "idle" | "sending" | "success" | "error";
 
 const INITIAL_VALUES: FormValues = {
   name: "",
@@ -49,7 +49,8 @@ export default function Contact() {
   const reduceMotion = useReducedMotion();
   const [values, setValues] = useState<FormValues>(INITIAL_VALUES);
   const [errors, setErrors] = useState<FormErrors>({});
-  const [status, setStatus] = useState<FieldStatus>("idle");
+  const [status, setStatus] = useState<SubmitStatus>("idle");
+  const [notice, setNotice] = useState<string>("");
   const [touched, setTouched] = useState<Record<keyof FormValues, boolean>>({
     name: false,
     email: false,
@@ -74,45 +75,70 @@ export default function Contact() {
         return next;
       });
     }
-    if (status !== "idle") setStatus("idle");
+    if (status !== "idle") {
+      setStatus("idle");
+      setNotice("");
+    }
   };
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const nextErrors = validate(values);
     setErrors(nextErrors);
+    setNotice("");
 
     if (Object.keys(nextErrors).length > 0) {
       setStatus("error");
+      setNotice("Please fix the highlighted fields and try again.");
       return;
     }
 
-    setStatus("validating");
+    setStatus("sending");
 
-    // No backend: open the visitor's mail client with a prefilled message.
-    const body = [
-      `Name: ${values.name.trim()}`,
-      `Email: ${values.email.trim()}`,
-      "",
-      values.message.trim(),
-    ].join("\n");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: values.name.trim(),
+          email: values.email.trim(),
+          subject: values.subject.trim(),
+          message: values.message.trim(),
+        }),
+      });
 
-    const mailto = `${contactInfo.email}?subject=${encodeURIComponent(
-      values.subject.trim(),
-    )}&body=${encodeURIComponent(body)}`;
+      const data: { success?: boolean; message?: string } | null =
+        await response.json().catch(() => null);
 
-    // Use a temporary anchor — window.location.assign() triggers ESLint
-    // no-location-assign-relative-destination (this is a mailto:, not an in-app route).
-    const anchor = document.createElement("a");
-    anchor.href = mailto;
-    document.body.appendChild(anchor);
-    anchor.click();
-    anchor.remove();
-    setStatus("opened");
+      if (!response.ok || data?.success === false) {
+        throw new Error(
+          data?.message || "Your message could not be sent. Please try again.",
+        );
+      }
+
+      setStatus("success");
+      setNotice("Thanks! Your message has been sent. I'll get back to you soon.");
+      setValues(INITIAL_VALUES);
+      setTouched({
+        name: false,
+        email: false,
+        subject: false,
+        message: false,
+      });
+    } catch (error) {
+      setStatus("error");
+      setNotice(
+        error instanceof Error
+          ? error.message
+          : "Your message could not be sent. Please try again.",
+      );
+    }
   };
 
-  const isSubmitting = status === "validating";
-  const showNotice = status === "opened";
+  const isSubmitting = status === "sending";
 
   const inputClass = (hasError: boolean) =>
     `w-full rounded-xl border bg-background/60 px-4 py-3 text-base text-white placeholder:text-secondary/60 focus-visible:ring-2 focus-visible:ring-neon focus-visible:outline-none ${
@@ -130,7 +156,7 @@ export default function Contact() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_55%_45%_at_70%_10%,rgba(194,248,0,0.06),transparent_70%)]"
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_55%_45%_at_50%_10%,rgba(194,248,0,0.06),transparent_70%)]"
       />
 
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -237,18 +263,6 @@ export default function Contact() {
               />
             </motion.a>
 
-            {/* <motion.p
-              {...reveal(0.4)}
-              className="flex items-start gap-3 rounded-2xl border border-border bg-card/40 px-5 py-4 text-sm leading-relaxed text-secondary"
-            >
-              <FaInfo className="mt-0.5 size-4 shrink-0 text-neon" aria-hidden="true" />
-              This form doesn&apos;t send messages directly — it opens your email client so
-              you can review and send. Replace the placeholder URLs in{" "}
-              <code className="rounded bg-background px-1 py-0.5 font-mono text-xs text-neon">
-                src/data/contact.ts
-              </code>
-              .
-            </motion.p> */}
           </div>
 
           {/* Right — form */}
@@ -256,7 +270,7 @@ export default function Contact() {
             {...reveal(0.15)}
             onSubmit={onSubmit}
             noValidate
-            aria-describedby={showNotice ? "contact-notice" : undefined}
+            aria-describedby={notice ? "contact-notice" : undefined}
             className="space-y-5 rounded-3xl border border-border bg-card/60 p-6 sm:p-8"
           >
             <div className="grid gap-5 sm:grid-cols-2">
@@ -397,24 +411,23 @@ export default function Contact() {
               ) : null}
             </div>
 
-            {status === "error" && Object.keys(errors).length > 0 ? (
+            {status === "error" && notice ? (
               <p
+                id="contact-notice"
                 role="alert"
                 className="rounded-xl border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-300"
               >
-                Please fix the highlighted fields and try again.
+                {notice}
               </p>
             ) : null}
 
-            {showNotice ? (
+            {status === "success" && notice ? (
               <p
                 id="contact-notice"
                 role="status"
                 className="rounded-xl border border-neon/40 bg-neon/10 px-4 py-3 text-sm text-neon"
               >
-                Your email client should have opened with your message
-                prefilled. Press send there to deliver it — nothing is sent from
-                this website.
+                {notice}
               </p>
             ) : null}
 
@@ -429,7 +442,7 @@ export default function Contact() {
                     className="size-4 animate-spin"
                     aria-hidden="true"
                   />
-                  Opening your email client...
+                  Sending message...
                 </>
               ) : (
                 <>
