@@ -7,6 +7,10 @@ import SectionDivider from "@/components/ui/SectionDivider";
 
 export default function Skills() {
   const reduceMotion = useReducedMotion();
+  const columns = [
+    skillCategories.filter((_, index) => index % 2 === 0),
+    skillCategories.filter((_, index) => index % 2 === 1),
+  ];
 
   return (
     <section id="skills" aria-labelledby="skills-heading" className="relative overflow-hidden py-20 lg:py-28">
@@ -24,43 +28,50 @@ export default function Skills() {
         />
 
         <div className="mt-14 grid gap-10 lg:grid-cols-2 lg:gap-12">
-          {skillCategories.map((category, categoryIndex) => (
-            <div key={category.title}>
-              <motion.h3
-                initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
-                className="mb-6 flex items-center gap-3"
-              >
-                <span aria-hidden="true" className="h-6 w-1 rounded-full bg-neon shadow-[0_0_10px_rgba(194,248,0,0.8)]" />
-                <span className="font-mono text-sm tracking-[0.25em] text-white uppercase">
-                  {category.title}
-                </span>
-              </motion.h3>
+          {columns.map((column, columnIndex) => (
+            <div key={columnIndex} className="space-y-10">
+              {column.map((category) => {
+                const categoryIndex = skillCategories.indexOf(category);
+                return (
+                  <div key={category.title}>
+                    <motion.h3
+                      initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-80px" }}
+                      transition={{ duration: 0.5, ease: "easeOut" }}
+                      className="mb-6 flex items-center gap-3"
+                    >
+                      <span aria-hidden="true" className="h-6 w-1 rounded-full bg-neon shadow-[0_0_10px_rgba(194,248,0,0.8)]" />
+                      <span className="font-mono text-sm tracking-[0.25em] text-white uppercase">
+                        {category.title}
+                      </span>
+                    </motion.h3>
 
-              <ul className="grid gap-4 sm:grid-cols-2">
-                {category.items.map((skill, index) => (
-                  <motion.li
-                    key={skill.name}
-                    initial={reduceMotion ? false : { opacity: 0, y: 20, scale: 0.98 }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    viewport={{ once: true, margin: "-40px" }}
-                    transition={{
-                      duration: 0.5,
-                      delay: categoryIndex * 0.1 + index * 0.06,
-                      ease: "easeOut",
-                    }}
-                    whileHover={reduceMotion ? undefined : { y: -4 }}
-                    className="group flex items-center gap-4 rounded-2xl border border-border bg-card/60 p-4 transition-colors hover:border-neon/50 hover:bg-card"
-                  >
-                    <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-border bg-background/60 text-neon transition-colors group-hover:border-neon/50">
-                      <skill.icon className="size-5" aria-hidden="true" />
-                    </span>
-                    <span className="text-base font-medium text-white">{skill.name}</span>
-                  </motion.li>
-                ))}
-              </ul>
+                    <ul className="grid gap-4 sm:grid-cols-2">
+                      {category.items.map((skill, index) => (
+                        <motion.li
+                          key={skill.name}
+                          initial={reduceMotion ? false : { opacity: 0, y: 20, scale: 0.98 }}
+                          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                          viewport={{ once: true, margin: "-40px" }}
+                          transition={{
+                            duration: 0.5,
+                            delay: categoryIndex * 0.1 + index * 0.06,
+                            ease: "easeOut",
+                          }}
+                          whileHover={reduceMotion ? undefined : { y: -4 }}
+                          className="group flex items-center gap-4 rounded-2xl border border-border bg-card/60 p-4 transition-colors hover:border-neon/50 hover:bg-card"
+                        >
+                          <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-border bg-background/60 text-neon transition-colors group-hover:border-neon/50">
+                            <skill.icon className="size-5" aria-hidden="true" />
+                          </span>
+                          <span className="text-base font-medium text-white">{skill.name}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
             </div>
           ))}
         </div>

@@ -23,6 +23,15 @@ export type SkillCategory = {
 
 export const skillCategories: readonly SkillCategory[] = [
   {
+    title: "Backend",
+    items: [
+      { name: "Node.js", icon: FaNodeJs, category: "Backend" },
+      { name: "Express.js", icon: SiExpress, category: "Backend" },
+      { name: "REST API", icon: FaServer, category: "Backend" },
+      { name: "Better Auth", icon: FaShieldHalved, category: "Backend" },
+    ],
+  },
+  {
     title: "Frontend",
     items: [
       { name: "HTML5", icon: FaHtml5, category: "Frontend" },
@@ -32,15 +41,6 @@ export const skillCategories: readonly SkillCategory[] = [
       { name: "React", icon: FaReact, category: "Frontend" },
       { name: "Next.js", icon: RiNextjsLine, category: "Frontend" },
       { name: "Tailwind CSS", icon: RiTailwindCssLine, category: "Frontend" },
-    ],
-  },
-  {
-    title: "Backend",
-    items: [
-      { name: "Node.js", icon: FaNodeJs, category: "Backend" },
-      { name: "Express.js", icon: SiExpress, category: "Backend" },
-      { name: "REST API", icon: FaServer, category: "Backend" },
-      { name: "Better Auth", icon: FaShieldHalved, category: "Backend" },
     ],
   },
 
