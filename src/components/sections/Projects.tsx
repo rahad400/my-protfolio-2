@@ -17,7 +17,7 @@ export default function Projects() {
           title="Things I've been building."
           description="A look at what I'm building — real projects with live demos and source code."
         />
-        <ul className="mt-14 grid gap-8 md:grid-cols-2">
+        <ul className="mt-14 grid gap-8 md:grid-cols-3">
           {projects.map((project, index) => (
             <li key={project.title}>
               <ProjectCard project={project} index={index} />

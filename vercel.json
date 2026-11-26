@@ -1,0 +1,4 @@
+{
+  "installCommand": "export npm_config_cache=\"${npm_config_cache_dir:-$PWD/.vercel/cache/npm}\"; unset npm_config_cache_dir; npm install",
+  "buildCommand": "export npm_config_cache=\"${npm_config_cache_dir:-$PWD/.vercel/cache/npm}\"; unset npm_config_cache_dir; npm run build"
+}

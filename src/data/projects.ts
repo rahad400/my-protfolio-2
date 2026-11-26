@@ -12,13 +12,6 @@ export const projects: readonly Project[] = [
     githubUrl: "https://github.com/rahad400/bazar-dor",
     featured: true,
   },
-  {
-    title: "HireLoop",
-    description:
-      "A job platform project designed around job discovery, user roles, and application workflows.",
-    tags: ["Next.js", "TypeScript", "MongoDB", "Node.js"],
-    liveUrl: "#",
-    githubUrl: "#",
-  },
+
 
 ];
