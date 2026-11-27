@@ -5,7 +5,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
 import SocialLinks from "@/components/shared/SocialLinks";
 import Button from "@/components/ui/Button";
-import SectionDivider from "@/components/ui/SectionDivider";
 
 const PROFILE_IMAGE = "/image/rahad.png";
 
@@ -155,7 +154,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <SectionDivider />
     </section>
   );
 }

@@ -3,13 +3,13 @@ import SocialLinks from "@/components/shared/SocialLinks";
 import type { NavLink } from "@/types";
 
 const FOOTER_LINKS: readonly NavLink[] = [
-  { label: "Home", href: "#home", id: "home" },
-  { label: "About", href: "#about", id: "about" },
-  { label: "Skills", href: "#skills", id: "skills" },
-  { label: "Projects", href: "#projects", id: "projects" },
-  { label: "Journey", href: "#journey", id: "journey" },
-  { label: "Education", href: "#education", id: "education" },
-  { label: "Contact", href: "#contact", id: "contact" },
+  { label: "Home", href: "/", id: "home" },
+  { label: "About", href: "/about", id: "about" },
+  { label: "Skills", href: "/skills", id: "skills" },
+  { label: "Projects", href: "/projects", id: "projects" },
+  { label: "Journey", href: "/journey", id: "journey" },
+  { label: "Education", href: "/education", id: "education" },
+  { label: "Contact", href: "/contact", id: "contact" },
 ];
 
 export default function Footer() {
@@ -19,7 +19,7 @@ export default function Footer() {
     <footer className="border-t border-border bg-card/40">
       <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-6 px-4 py-10 sm:px-6 lg:px-8">
         <Link
-          href="#home"
+          href="/"
           className="font-mono text-sm font-bold tracking-[0.25em] text-white uppercase focus-visible:ring-2 focus-visible:ring-neon focus-visible:outline-none"
         >
           RAHAD<span className="text-neon">.</span>

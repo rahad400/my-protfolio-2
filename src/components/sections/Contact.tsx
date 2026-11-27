@@ -13,6 +13,7 @@ import {
 import { RiLoader5Line } from "react-icons/ri";
 import { contactInfo } from "@/data/contact";
 import SectionTitle from "@/components/ui/SectionTitle";
+import SectionDivider from "@/components/ui/SectionDivider";
 
 type FormValues = {
   name: string;
@@ -154,6 +155,7 @@ export default function Contact() {
       aria-labelledby="contact-heading"
       className="relative overflow-hidden py-20 lg:py-28"
     >
+      <SectionDivider  position="top" />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_55%_45%_at_50%_10%,rgba(194,248,0,0.06),transparent_70%)]"

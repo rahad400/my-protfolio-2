@@ -21,6 +21,7 @@ export default function Journey() {
       aria-labelledby="journey-heading"
       className="relative overflow-hidden py-20 lg:py-28"
     >
+      <SectionDivider  position="top" />
       {/* Ambient glow */}
       <div
         aria-hidden="true"
@@ -95,7 +96,6 @@ export default function Journey() {
           </ol>
         </div>
       </div>
-      <SectionDivider />
     </section>
   );
 }

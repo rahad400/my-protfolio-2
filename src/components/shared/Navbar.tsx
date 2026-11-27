@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Download, Menu, X } from "lucide-react";
@@ -13,13 +14,13 @@ type NavbarProps = {
 };
 
 const DEFAULT_LINKS: readonly NavLink[] = [
-  { label: "Home", href: "#home", id: "home" },
-  { label: "About", href: "#about", id: "about" },
-  { label: "Skills", href: "#skills", id: "skills" },
-  { label: "Projects", href: "#projects", id: "projects" },
-  { label: "Journey", href: "#journey", id: "journey" },
-  { label: "Education", href: "#education", id: "education" },
-  { label: "Contact", href: "#contact", id: "contact" },
+  { label: "Home", href: "/", id: "" },
+  { label: "About", href: "/about", id: "about" },
+  { label: "Skills", href: "/skills", id: "skills" },
+  { label: "Projects", href: "/projects", id: "projects" },
+  { label: "Journey", href: "/journey", id: "journey" },
+  { label: "Education", href: "/education", id: "education" },
+  { label: "Contact", href: "/contact", id: "contact" },
 ];
 
 export default function Navbar({
@@ -27,8 +28,8 @@ export default function Navbar({
   links = DEFAULT_LINKS,
   cvHref = "/resume/Rahad-CV.pdf",
 }: NavbarProps) {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [activeId, setActiveId] = useState<string>(links[0]?.id ?? "home");
   const [isScrolled, setIsScrolled] = useState(false);
   const navRef = useRef<HTMLElement>(null);
 
@@ -37,29 +38,9 @@ export default function Navbar({
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 8);
     onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("scroll", onScroll, { passive: false });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    const sections = links
-      .map((link) => document.getElementById(link.id))
-      .filter((el): el is HTMLElement => el !== null);
-
-    if (sections.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setActiveId(entry.target.id);
-        }
-      },
-      { rootMargin: "-40% 0px -55% 0px", threshold: 0 },
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, [links]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -98,8 +79,8 @@ export default function Navbar({
       >
         {/* Brand */}
         <Link
-          href="#home"
-          onClick={() => setActiveId("home")}
+          href="/"
+          scroll={true}
           className="font-mono text-sm font-bold tracking-[0.25em] text-white uppercase focus-visible:ring-2 focus-visible:ring-neon focus-visible:outline-none"
           aria-label="Back to home"
         >
@@ -110,12 +91,14 @@ export default function Navbar({
         {/* Desktop links */}
         <ul className="hidden items-center gap-1 md:flex">
           {links.map((link) => {
-            const isActive = activeId === link.id;
+            const isActive =
+              pathname === link.href ||
+              (link.href !== "/" && pathname.startsWith(link.href));
             return (
               <li key={link.id}>
                 <Link
                   href={link.href}
-                  onClick={() => setActiveId(link.id)}
+                  scroll={true}
                   aria-current={isActive ? "true" : undefined}
                   className={`relative rounded-full px-4 py-2 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-neon focus-visible:outline-none ${
                     isActive ? "text-white" : "text-secondary hover:text-white"
@@ -175,7 +158,9 @@ export default function Navbar({
           >
             <ul className="space-y-1 px-4 py-4 sm:px-6">
               {links.map((link, index) => {
-                const isActive = activeId === link.id;
+                const isActive =
+                  pathname === link.href ||
+                  (link.href !== "/" && pathname.startsWith(link.href));
                 return (
                   <motion.li
                     key={link.id}
@@ -185,10 +170,8 @@ export default function Navbar({
                   >
                     <Link
                       href={link.href}
-                      onClick={() => {
-                        setActiveId(link.id);
-                        closeMenu();
-                      }}
+                      scroll={true}
+                      onClick={closeMenu}
                       aria-current={isActive ? "true" : undefined}
                       className={`flex items-center justify-between rounded-xl px-4 py-3 text-base font-medium transition-colors focus-visible:ring-2 focus-visible:ring-neon focus-visible:outline-none ${
                         isActive

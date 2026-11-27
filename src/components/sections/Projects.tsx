@@ -8,6 +8,7 @@ import SectionDivider from "@/components/ui/SectionDivider";
 export default function Projects() {
   return (
     <section id="projects" aria-labelledby="projects-heading" className="relative overflow-hidden py-20 lg:py-28">
+      <SectionDivider  position="top" />
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_55%_45%_at_50%_10%,rgba(194,248,0,0.06),transparent_70%)]"
@@ -26,7 +27,6 @@ export default function Projects() {
           ))}
         </ul>
       </div>
-      <SectionDivider />
     </section>
   );
 }

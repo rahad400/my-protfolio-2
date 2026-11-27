@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 import AnimatedBackground from "@/components/shared/AnimatedBackground";
+import ScrollToTop from "@/components/shared/ScrollToTop";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -16,13 +17,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Rahad — Junior Full-Stack Developer",
+  title: "Rahad —  Full-Stack Developer",
   description:
-    "Portfolio of Rahad, a Junior Full-Stack Developer building modern web applications with React, Next.js, TypeScript, and Node.js.",
+    "Portfolio of Rahad,  Full-Stack Developer building modern web applications with React, Next.js, TypeScript, and Node.js.",
   openGraph: {
     title: "Rahad — Junior Full-Stack Developer",
     description:
-      "Portfolio of Rahad, a Junior Full-Stack Developer building modern web applications with React, Next.js, TypeScript, and Node.js.",
+      "Portfolio of Rahad,  Full-Stack Developer building modern web applications with React, Next.js, TypeScript, and Node.js.",
     type: "website",
     locale: "en_US",
   },
@@ -41,6 +42,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-background font-sans text-foreground">
+        <ScrollToTop />
         <AnimatedBackground />
         <Navbar />
         <main>{children}</main>

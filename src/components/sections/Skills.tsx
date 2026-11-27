@@ -13,7 +13,12 @@ export default function Skills() {
   ];
 
   return (
-    <section id="skills" aria-labelledby="skills-heading" className="relative overflow-hidden py-20 lg:py-28">
+    <section
+      id="skills"
+      aria-labelledby="skills-heading"
+      className="relative overflow-hidden py-20 lg:py-28"
+    >
+      <SectionDivider  position="top" />
       {/* Ambient glow */}
       <div
         aria-hidden="true"
@@ -41,7 +46,10 @@ export default function Skills() {
                       transition={{ duration: 0.5, ease: "easeOut" }}
                       className="mb-6 flex items-center gap-3"
                     >
-                      <span aria-hidden="true" className="h-6 w-1 rounded-full bg-neon shadow-[0_0_10px_rgba(194,248,0,0.8)]" />
+                      <span
+                        aria-hidden="true"
+                        className="h-6 w-1 rounded-full bg-neon shadow-[0_0_10px_rgba(194,248,0,0.8)]"
+                      />
                       <span className="font-mono text-sm tracking-[0.25em] text-white uppercase">
                         {category.title}
                       </span>
@@ -51,7 +59,11 @@ export default function Skills() {
                       {category.items.map((skill, index) => (
                         <motion.li
                           key={skill.name}
-                          initial={reduceMotion ? false : { opacity: 0, y: 20, scale: 0.98 }}
+                          initial={
+                            reduceMotion
+                              ? false
+                              : { opacity: 0, y: 20, scale: 0.98 }
+                          }
                           whileInView={{ opacity: 1, y: 0, scale: 1 }}
                           viewport={{ once: true, margin: "-40px" }}
                           transition={{
@@ -65,7 +77,9 @@ export default function Skills() {
                           <span className="flex size-11 shrink-0 items-center justify-center rounded-xl border border-border bg-background/60 text-neon transition-colors group-hover:border-neon/50">
                             <skill.icon className="size-5" aria-hidden="true" />
                           </span>
-                          <span className="text-base font-medium text-white">{skill.name}</span>
+                          <span className="text-base font-medium text-white">
+                            {skill.name}
+                          </span>
                         </motion.li>
                       ))}
                     </ul>
@@ -76,7 +90,6 @@ export default function Skills() {
           ))}
         </div>
       </div>
-      <SectionDivider />
     </section>
   );
 }

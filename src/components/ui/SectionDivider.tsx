@@ -1,8 +1,18 @@
-export default function SectionDivider() {
+type SectionDividerProps = {
+  position?: "top" | "bottom";
+  className?: string;
+};
+
+export default function SectionDivider({
+  position = "bottom",
+  className = "",
+}: SectionDividerProps) {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-x-0 bottom-0 z-10"
+      className={`pointer-events-none absolute inset-x-0 z-10 ${
+        position === "top" ? "top-0" : "bottom-0"
+      } ${className}`}
     >
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="h-px bg-[linear-gradient(90deg,transparent_0%,rgba(194,248,0,0.18)_25%,rgba(194,248,0,0.7)_50%,rgba(194,248,0,0.18)_75%,transparent_100%)]" />
@@ -12,3 +22,5 @@ export default function SectionDivider() {
     </div>
   );
 }
+
+

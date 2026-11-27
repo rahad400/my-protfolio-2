@@ -41,6 +41,7 @@ export default function About() {
       aria-labelledby="about-heading"
       className="relative overflow-hidden py-20 lg:py-28"
     >
+      <SectionDivider  position="top" />
       {/* Ambient glow */}
       <div
         aria-hidden="true"
@@ -119,7 +120,6 @@ export default function About() {
           </div>
         </div>
       </div>
-      <SectionDivider />
     </section>
   );
 }
